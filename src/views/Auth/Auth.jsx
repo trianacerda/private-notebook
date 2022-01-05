@@ -16,8 +16,8 @@ export default function Auth({ isSigningUp = false }) {
         signUpUser(email, password);
         history.replace('/confirm-email');
       } else {
-        signInUser(email, password);
-        setUser({ id, email });
+        const user = await signInUser(email, password);
+        setUser({ id: user.id, email });
         history.replace('/notes');
       }
     } catch (error) {
